@@ -20,15 +20,16 @@ func main() {
 
 	// Open a websocket connection to Discord and begin listening.
 	appCfg.DG = service.NewDiscordWebSocket(appCfg)
+
+	// TODO add discord event hanlder
+	// Do something...
+
 	if err := appCfg.DG.Open(); err != nil {
 		fmt.Println("error Discord WS opening connection,", err)
 		return
 	} else {
 		fmt.Println("Discord Bot is now running.")
 	}
-
-	// TODO add discord event hanlder
-	// Do something...
 
 	ginEngine := service.New(appCfg)
 
