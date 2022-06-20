@@ -56,7 +56,11 @@ func (ac *AppConfig) GetDiscordToken() string {
 }
 
 func (ac *AppConfig) GetDiscordIntents() discordgo.Intent {
-	return discordgo.IntentsGuildMembers | discordgo.IntentsGuildMessages | discordgo.IntentsGuildMessageReactions
+	return discordgo.IntentsAllWithoutPrivileged | discordgo.IntentGuildMembers | discordgo.IntentGuildPresences | discordgo.IntentMessageContent
+}
+
+func (ac *AppConfig) GetDiscordServerID() string {
+	return os.Getenv("DISCORD_SERVER_ID")
 }
 
 func (ac *AppConfig) GetTrustProxy() string {

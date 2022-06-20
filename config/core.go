@@ -6,5 +6,6 @@ type ConfigInterface interface {
 	GetDG() *discordgo.Session
 	GetDiscordToken() string
 	GetDiscordIntents() discordgo.Intent
+	GetDiscordServerID() string
 	GetTrustProxy() string
 }

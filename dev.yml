@@ -4,11 +4,11 @@ networks:
   intranet:
 
 services:
-  discord-bot-service:
+  base-discord-service:
     build: 
       context: .
       dockerfile: ./Dockerfile
-    container_name: discord-bot-service
+    container_name: base-discord-service
     ports:
       - "9526:9526"
     env_file:

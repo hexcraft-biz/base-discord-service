@@ -17,6 +17,20 @@ func NewDiscordWebSocket(cfg config.ConfigInterface) *discordgo.Session {
 	}
 
 	dg.Identify.Intents = cfg.GetDiscordIntents()
+	guildID := cfg.GetDiscordServerID()
+	guildFocus := false
+
+	dg.AddHandler(func(s *discordgo.Session, r *discordgo.Ready) {
+		for _, g := range r.Guilds {
+			if g.ID == guildID {
+				guildFocus = true
+			}
+		}
+
+		if !guildFocus {
+			panic("Guild ID is not matched.")
+		}
+	})
 
 	return dg
 }
