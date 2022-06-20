@@ -32,6 +32,17 @@ func (ctrl *Common) Ping() gin.HandlerFunc {
 	}
 }
 
+func (ctrl *Common) ServerInfo() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		guild, err := ctrl.Config.GetDG().Guild(ctrl.Config.GetDiscordServerID())
+		if err != nil {
+			c.JSON(http.StatusNotFound, gin.H{"message": err})
+		} else {
+			c.JSON(http.StatusOK, guild)
+		}
+	}
+}
+
 func (ctrl *Common) WebsocketStatus() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		resp, err := ctrl.Config.GetDG().GatewayBot()

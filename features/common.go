@@ -13,6 +13,6 @@ func LoadCommon(e *gin.Engine, cfg config.ConfigInterface) {
 
 	commonV1 := feature.New(e, "/healthcheck/v1")
 	commonV1.GET("/ping", c.Ping())
-
+	commonV1.GET("/server-info", c.ServerInfo())
 	commonV1.GET("/websocket-status", c.WebsocketStatus())
 }
